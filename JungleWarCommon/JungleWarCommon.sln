@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "游戏服务器端", "游戏服务器端.csproj", "{9F581AB4-98F8-4AAB-BFD2-CCC6C0AE332E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "共享工程", "..\共享工程\共享工程.csproj", "{1B075107-8769-4D0A-9FB9-0784F6FD9DB2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JungleWarCommon", "JungleWarCommon.csproj", "{1B075107-8769-4D0A-9FB9-0784F6FD9DB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9F581AB4-98F8-4AAB-BFD2-CCC6C0AE332E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F581AB4-98F8-4AAB-BFD2-CCC6C0AE332E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9F581AB4-98F8-4AAB-BFD2-CCC6C0AE332E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F581AB4-98F8-4AAB-BFD2-CCC6C0AE332E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1B075107-8769-4D0A-9FB9-0784F6FD9DB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1B075107-8769-4D0A-9FB9-0784F6FD9DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B075107-8769-4D0A-9FB9-0784F6FD9DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -26,6 +20,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {564F86F8-53E7-48ED-82EA-1AB9549550C5}
+		SolutionGuid = {E1BB5551-37D7-4944-98D4-A1E83856EF1D}
 	EndGlobalSection
 EndGlobal

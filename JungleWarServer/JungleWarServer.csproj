@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{9F581AB4-98F8-4AAB-BFD2-CCC6C0AE332E}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>GameServer</RootNamespace>
-    <AssemblyName>游戏服务器端</AssemblyName>
+    <RootNamespace>JungleWarServer</RootNamespace>
+    <AssemblyName>JungleWarServer</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -71,11 +71,5 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\共享工程\共享工程.csproj">
-      <Project>{1b075107-8769-4d0a-9fb9-0784f6fd9db2}</Project>
-      <Name>共享工程</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

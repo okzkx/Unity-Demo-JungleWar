@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Common {
+namespace JungleWarCommon {
     public enum RoleType {
         Blue,
         Red
