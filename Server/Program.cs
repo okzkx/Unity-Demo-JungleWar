@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GameServer.Servers;
-namespace JungleWarServer
+namespace Server
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Server server = new Server("127.0.0.1", 6688);
+            GameServer.Servers.Server server = new GameServer.Servers.Server("127.0.0.1", 6688);
             server.Start();
 
             Console.ReadKey();

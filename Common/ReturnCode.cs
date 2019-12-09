@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace JungleWarCommon {
+namespace Common {
     public enum ReturnCode {
         Success,
         Fail,

@@ -9,9 +9,9 @@ using GameServer.Servers;
 namespace GameServer.Controller {
     public class ControllerManager {
         public Dictionary<RequestCode, BaseController> controllerDict = new Dictionary<RequestCode, BaseController>();
-        public Server server;
+        public Servers.Server server;
 
-        public ControllerManager(Server server) {
+        public ControllerManager(Servers.Server server) {
             this.server = server;
             InitController();
         }

@@ -7,7 +7,7 @@ using Common;
 using GameServer.Servers;
 namespace GameServer.Controller {
     public class RoomController : BaseController {
-        public Server server;
+        public Servers.Server server;
         public List<Room> roomList = new List<Room>();
 
         public RoomController(ControllerManager cm):base(RequestCode.Room,cm) {
