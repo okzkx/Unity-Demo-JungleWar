@@ -18,6 +18,7 @@ public class LoginRequest : BaseRequest {
     }
 
     public override void OnResponse(string data) {
+        Debug.Log(data);
         string[] strs = data.Split(',');
         ReturnCode returnCode = (ReturnCode)int.Parse(strs[0]);
 

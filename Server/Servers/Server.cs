@@ -10,7 +10,7 @@ using Common;
 namespace GameServer.Servers {
     public class Server {
         private IPEndPoint ipEndPoint;
-        private Socket serverSocket;
+        private Socket socket;
         public List<Client> clientList = new List<Client>();
         public ControllerManager controllerManager;
 
@@ -21,18 +21,20 @@ namespace GameServer.Servers {
         }
 
         public void Start() {
-            serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            serverSocket.Bind(ipEndPoint);
-            serverSocket.Listen(0);
-            serverSocket.BeginAccept(AcceptCallBack, null);
+            Console.WriteLine("服务器开启socket。。");
+            socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            socket.Bind(ipEndPoint);
+            socket.Listen(0);
+
+            socket.BeginAccept(AcceptCallBack, null);
         }
         private void AcceptCallBack(IAsyncResult ar) {
             Console.WriteLine("一个客户端连接上服务器。。");
-            Socket clientSocket = serverSocket.EndAccept(ar);
+            Socket clientSocket = socket.EndAccept(ar);
             Client client = new Client(clientSocket, this);
 
             clientList.Add(client);
-            serverSocket.BeginAccept(AcceptCallBack, null);
+            socket.BeginAccept(AcceptCallBack, null);
         }
         public void RemoveClient(Client client) {
             lock (clientList) {
