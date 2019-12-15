@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
-public enum UIPanelType {
+public enum UIPanelType
+{
     None,
     Message,
     Start,
@@ -13,12 +14,14 @@ public enum UIPanelType {
     Game
 }
 
-public class UIManager : BaseManager {
+public class UIManager : BaseManager
+{
 
     private Transform canvasTransform;
     private Transform CanvasTransform {
         get {
-            if (canvasTransform == null) {
+            if (canvasTransform == null)
+            {
                 canvasTransform = GameObject.Find("Canvas").transform;
             }
             return canvasTransform;
@@ -37,18 +40,23 @@ public class UIManager : BaseManager {
     public string uiPanelPathPrefix = "UIPanel/";
 
 
-    public UIManager(GameFacade facade) : base(facade) {
-        foreach (var item in Enum.GetValues(typeof( UIPanelType))) {
+    public UIManager(GameFacade facade) : base(facade)
+    {
+        foreach (var item in Enum.GetValues(typeof(UIPanelType)))
+        {
             panelPathDict.Add((UIPanelType)item, uiPanelPathPrefix + item + "Panel");
         }
     }
-    public override void OnInit() {
+    public override void OnInit()
+    {
         msgPanel = NewPanel<MessagePanel>();
     }
 
-    public override void Update() {
+    public override void Update()
+    {
         //UI系统响应异步的入栈请求
-        if (panelTypeToPush != UIPanelType.None) {
+        if (panelTypeToPush != UIPanelType.None)
+        {
             PushPanel(panelTypeToPush);
             panelTypeToPush = UIPanelType.None;
         }
@@ -60,7 +68,8 @@ public class UIManager : BaseManager {
     /// </summary>
     /// <typeparam name="P"></typeparam>
     /// <returns></returns>
-    public P NewPanel<P>()where P:BasePanel {
+    public P NewPanel<P>() where P : BasePanel
+    {
         P p = GetPanel<P>();
         p.OnEnter();
         return p;
@@ -69,9 +78,11 @@ public class UIManager : BaseManager {
     /// <summary>
     /// 把某个页面入栈，  把某个页面显示在界面上
     /// </summary>
-    public BasePanel PushPanel(UIPanelType panelType) {
+    public BasePanel PushPanel(UIPanelType panelType)
+    {
         //栈顶页面停止
-        if (panelStack.Count > 0) {
+        if (panelStack.Count > 0)
+        {
             BasePanel topPanel = panelStack.Peek();
             topPanel.OnPause();
         }
@@ -81,10 +92,12 @@ public class UIManager : BaseManager {
         panelStack.Push(panel);
         return panel;
     }
-    public P PushPanel<P>()where P: BasePanel {
+    public P PushPanel<P>() where P : BasePanel
+    {
         return (P)PushPanel(ScriptExtends.TypeToEnum<UIPanelType, P>("Panel"));
     }
-    public void PushPanelAsync(UIPanelType panelType) {
+    public void PushPanelAsync(UIPanelType panelType)
+    {
         panelTypeToPush = panelType;
     }
 
@@ -92,21 +105,27 @@ public class UIManager : BaseManager {
     /// <summary>
     /// 出栈 ，把页面从界面上移除
     /// </summary>
-    public void PopPanel() {
-        if (panelStack != null && panelStack.Count > 0) {
+    public void PopPanel()
+    {
+        if (panelStack != null && panelStack.Count > 0)
+        {
             BasePanel topPanel = panelStack.Pop();
             topPanel.OnExit();
-            if (panelStack.Count>0) {
+            if (panelStack.Count > 0)
+            {
                 BasePanel topPanel2 = panelStack.Peek();
                 topPanel2.OnResume();
             }
-        } else {
+        }
+        else
+        {
             Debug.LogError("出栈出错");
         }
     }
 
-    public T GetPanel<T>() where T : BasePanel {
-        return (T)GetPanel(ScriptExtends.TypeToEnum<UIPanelType,T>("Panel"));
+    public T GetPanel<T>() where T : BasePanel
+    {
+        return (T)GetPanel(ScriptExtends.TypeToEnum<UIPanelType, T>("Panel"));
     }
 
     /// <summary>
@@ -114,9 +133,11 @@ public class UIManager : BaseManager {
     /// 如果找不到，那么就找这个面板的prefab的路径，然后去根据prefab去实例化面板
     /// </summary>
     /// <returns></returns>
-    private BasePanel GetPanel(UIPanelType panelType) {
+    private BasePanel GetPanel(UIPanelType panelType)
+    {
         BasePanel panel = panelDict.TryGet(panelType);
-        if (panel == null) {
+        if (panel == null)
+        {
             string path = panelPathDict[panelType];
             GameObject instPanel = GameObject.Instantiate(Resources.Load(path)) as GameObject;
             instPanel.transform.SetParent(CanvasTransform, false);
@@ -125,13 +146,17 @@ public class UIManager : BaseManager {
             instPanel.GetComponent<BasePanel>().uIPanelType = panelType;
             panelDict.Add(panelType, instPanel.GetComponent<BasePanel>());
             return instPanel.GetComponent<BasePanel>();
-        } else {
+        }
+        else
+        {
             return panel;
         }
     }
 
-    public void ShowMessage(string msg) {
+    public void ShowMessage(string msg)
+    {
         //panelTypeToSetActive = UIPanelType.Message;
+        Debug.Log("ShowMessage: " + msg);
         GetPanel<MessagePanel>().ShowMessage(msg);
     }
 }
